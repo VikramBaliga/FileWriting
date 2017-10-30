@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText txtMessage;
+    //File Name
     String fileName = "Myfile";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,12 @@ public class MainActivity extends AppCompatActivity {
         FileOutputStream outputStream;
         try
         {
+            //Open file for writting
             outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
             String msg = txtMessage.getText().toString();
+            //write the file based on the text entered
             outputStream.write(msg.getBytes());
+            //close connetion with the file
             outputStream.close();
         }
         catch (IOException ex)
@@ -44,13 +48,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void CheckFile(View view)
     {
+        // check if file is created
         File file = new File(this.getFilesDir(),fileName);
         if(file.exists())
         {
+            // file present
             Toast.makeText(this,"File Exists",Toast.LENGTH_LONG).show();
         }
         else
         {
+            //file not present
             Toast.makeText(this,"File Does Not Exists",Toast.LENGTH_LONG).show();
         }
     }
